@@ -1,0 +1,2 @@
+#include "./LOT/SDL/Primitives/SDL_triangle.hpp"
+#include "./LOT/SDL/Primitives/SDL_circle.hpp"
