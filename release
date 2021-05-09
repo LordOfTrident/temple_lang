@@ -1,5 +1,5 @@
 #Release Compile
-if bash ./make/make bin/release/source -O3 -s; then
+if bash ./make/make bin/release/temple -O3 -s; then
     printf "\e[0;32mCompiled Release\n";
 else
     printf "\e[0;31mCompilation Failed\n";

@@ -1,9 +1,9 @@
 #Debug Compile
-if bash ./make/make bin/debug/source -O0 -g; then
+if bash ./make/make bin/debug/temple -O0 -g; then
     printf "\e[0;32mCompiled, Running Debug\e[1;34m\n----------------------------\n\e[0m\n";
 
 	start=`date +%s.%N`;
-	./bin/debug/source;
+	./bin/debug/temple;
 	end=`date +%s.%N`;
 
 	printf "\e[1;34m\n----------------------------\n\e[0mProcess exited after \e[0;36m$(echo "$end - $start" | bc -l)\e[0m seconds with return value \e[0;36m$?\e[0m.\n"
