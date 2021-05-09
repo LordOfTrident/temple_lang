@@ -28,9 +28,13 @@ int main(int argc, char* argv[]) {
             else {std::cout << "Expected a file name." << std::endl; return 1;};
 
             if (!LOT::plusplus::FileExists(File)) {
-                std::cout << "File \"" + File + "\" not found." << std::endl;
-                
-                return 1;
+                if (!LOT::plusplus::FileExists(File + ".tm")) {
+                    std::cout << "File \"" + File + "\" not found." << std::endl;
+                    
+                    return 1;
+                };
+
+                File += ".tm";
             };
 
             skip = true;
@@ -46,7 +50,11 @@ int main(int argc, char* argv[]) {
     if (std::count(params.begin(),params.end(), "-c")) {
         if (std::count(params.begin(),params.end(), "-f")) {
             LOT::Temple::Temple TM_Compiler;
-            return TM_Compiler.Compile(LOT::plusplus::FileToString(File));
+            int result = TM_Compiler.Compile(LOT::plusplus::FileToString(File));
+
+            if (result != LOT::Temple::CompilerExitcodes::COMPILER_OK) std::cout << "Compilation failed." << std::endl;
+
+            return 1;
         } else LOT::Temple::Shell::Start();
     };
     

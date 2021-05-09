@@ -9,14 +9,14 @@
 namespace LOT {
     namespace Temple {
         enum ParserExitcodes {
-            OK,
-            SYNTAX_ERROR
+            PARSER_OK,
+            PARSER_SYNTAX_ERROR
         };
 
         class Parser {
         public: Parser() {};
             void Assign(LOT::Temple::Script *p_Script) {Script = p_Script;};
-            std::vector <LOT::Temple::Token> Extract() {return Script->GetAll();};
+            std::vector <LOT::Temple::Token> Extract() {return Script->Tokens;};
 
             int Parse() {
                 unsigned int idx = 0;
@@ -38,7 +38,7 @@ namespace LOT {
                         if (instruction < 0) {
                             std::cout << LOT::Temple::Exception::Throw("Unknown instruction \"" + token + "\"", line, true) << std::endl;
 
-                            return LOT::Temple::ParserExitcodes::SYNTAX_ERROR;
+                            return LOT::Temple::ParserExitcodes::PARSER_SYNTAX_ERROR;
                         } else Script->Add(LOT::Temple::Token(LOT::Temple::TokenTypes::INSTRUCTION, instruction, line));
                     };
 
@@ -47,7 +47,7 @@ namespace LOT {
                     ++ idx;
                 };
 
-                return LOT::Temple::ParserExitcodes::OK;
+                return LOT::Temple::ParserExitcodes::PARSER_OK;
             };
 
         private:

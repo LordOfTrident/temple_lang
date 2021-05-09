@@ -8,7 +8,6 @@ namespace LOT {
     namespace Temple {
         class Script {
         public: Script(std::string p_Code): Source(p_Code) {};
-            std::vector <LOT::Temple::Token> GetAll() {return Tokens;};
             void Add(LOT::Temple::Token p_Token) {Tokens.push_back(p_Token);};
 
             void Debug_PrintTokens() {
@@ -18,8 +17,6 @@ namespace LOT {
             };
 
             std::string Source;
-            
-        private:
             std::vector <LOT::Temple::Token> Tokens;
         };
     };

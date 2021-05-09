@@ -1,6 +1,4 @@
-push #5
-push #5
+push #30
+push #12
 add
-push #5
-mult
 halt
