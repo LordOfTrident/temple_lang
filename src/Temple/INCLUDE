@@ -1,5 +1,5 @@
-#include "./LOT/++/++.hpp"
-#include "./LOT/++/Math++/Math++.hpp"
+#include "../../include/LOT/++/++.hpp"
+#include "../../include/LOT/++/Math++/Math++.hpp"
 
 #include "../../include/COLORS"
 #include "../../include/UNITS"
