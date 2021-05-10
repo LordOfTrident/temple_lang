@@ -9,7 +9,7 @@ namespace LOT {
     namespace Temple {
         class Temple {
         public: Temple() {};
-            int Compile(std::string p_Code) {
+            int Compile(std::string p_OutputName, std::string p_Code) {
                 LOT::Temple::Script script(p_Code);
                 int result;
 
@@ -24,7 +24,7 @@ namespace LOT {
 
                 if (result != LOT::Temple::ParserExitcodes::PARSER_OK) return result;
 
-                LOT::Temple::WriteBinFile("a.tmbc", &Bytecode);
+                LOT::Temple::WriteBinFile(p_OutputName, &Bytecode);
 
                 return result;
             };

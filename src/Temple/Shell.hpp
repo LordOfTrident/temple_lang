@@ -19,7 +19,7 @@ namespace LOT {
                     std::cout << std::endl << (std::string)cc_red + "> " + cc_NC; std::getline(std::cin, input);
 
                     if (LOT::plusplus::LowerCase(input) == "exit();") running = false;
-                    else TM_Compiler.Compile(input);
+                    else TM_Compiler.Compile("a.tmbc", input);
                 };
             };
         };

@@ -37,7 +37,7 @@ namespace LOT {
             char buffer[p_Bytecode->Buffer.size() - 1];
             std::copy(p_Bytecode->Buffer.begin(), p_Bytecode->Buffer.end(), buffer);
 
-            std::ofstream BinFile("a.tmbc", std::ios::out | std::ios::binary);
+            std::ofstream BinFile(p_FileName, std::ios::out | std::ios::binary);
             BinFile.write(buffer, p_Bytecode->Buffer.size());
 
             BinFile.close();
