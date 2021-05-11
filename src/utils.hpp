@@ -16,7 +16,9 @@ namespace LOT {
         namespace Utils {
             bool FileExists(std::string p_Name);
             std::string FileToString(std::string p_FileName);
+
             void WriteBinFile(std::string p_FileName, LOT::Temple::Bytebuffer *p_Bytecode);
+            std::vector <uint8_t> ReadBinFile(std::string p_FileName);
             
             std::string LowerCase(std::string p_s);
         };

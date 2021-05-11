@@ -10,6 +10,29 @@ void LOT::Temple::Utils::WriteBinFile(std::string p_FileName, LOT::Temple::Byteb
     BinFile.close();
 };
 
+std::vector <uint8_t> LOT::Temple::Utils::ReadBinFile(std::string p_FileName) {
+    /*char buffer[0];
+
+    std::ifstream BinFile(p_FileName, std::ios::in | std::ios::binary);
+    BinFile.read(buffer, p_Bytecode->Buffer.size());
+
+    BinFile.close();//p_Bytecode->Buffer.size() - 1
+    
+    std::vector <uint8_t> Buffer(buffer, buffer + sizeof buffer / sizeof buffer[0]);
+
+    p_Bytecode->Buffer = Buffer;*/
+
+    std::ifstream BinFile(p_FileName, std::ios::in | std::ios::binary);
+
+    std::vector <uint8_t> Buffer(std::istreambuf_iterator<char>(BinFile), {});
+    //p_Bytecode->Buffer = Buffer;
+    //p_Bytecode->Pointer = p_Bytecode->Buffer.size() - 2;
+
+    BinFile.close();
+
+    return Buffer;
+};
+
 std::string LOT::Temple::Utils::FileToString(std::string p_FileName) {
     std::string f_string = "";
     std::ifstream f_Handle(p_FileName.c_str());

@@ -22,7 +22,7 @@ int main(int argc, char* argv[]) {
         };
 
         // Comparing parameters
-        if (arg == "-c" || arg == "-v") {params.push_back(arg); continue;};
+        if (arg == "-c" || arg == "-v" || arg == "-r") {params.push_back(arg); continue;}; // Modes
         if (arg == "-f") {
             params.push_back(arg); 
 
@@ -53,7 +53,7 @@ int main(int argc, char* argv[]) {
     // Checking if no parameters were passed
     if (params.size() == 0) {
         std::cout << cc_YELLOW << " _..__ ________  _________ _      _____\n|_|| _|  ___|  \\/\\_|| ___ \\ |    |  __/\n  ||| | |__ | . \\._/| |,/ /\\\\    | |__  \n  | |/|  _||| |\\/|_||  \\|/| \\|   |  _|| \n .| ||| |_``| | / _|| ||| | ||.._| |_|| \n \\\\_/\\\\____/\\_| ||_/\\_|   \\___||/\\____/ \n ||   |/        ||            //     ||\n" << 
-        cc_NC << (std::string) "\nTemple Programming Language\nby LordOfTrident\ncurrent version " + VER + " (" + DATE + ") pre-release\nusage:\n  temple <parameters>\nparameters:\n  -c            compile mode\n  -f <name>     attach a file\n  -v            show the version\nversions:\n  pre-release\n    (5/8/2021)\n    0.0.1       working parser, compiler\n" << std::endl;
+        cc_NC << (std::string) "\nTemple Programming Language\nby LordOfTrident\ncurrent version " + VER + " (" + DATE + ") pre-release\nusage:\n  temple <parameters>\nparameters:\n  -c            compile mode\n  -r            run mode\n  -f <name>     attach a file\n  -v            show the version\nversions:\n  pre-release\n    (5/8/2021)\n    0.0.1       working parser, compiler\n" << std::endl;
 
         return 0;
     };
@@ -68,12 +68,32 @@ int main(int argc, char* argv[]) {
     // Checkng if compile mode was enabled
     if (std::count(params.begin(),params.end(), "-c")) {
         if (std::count(params.begin(),params.end(), "-f")) {
-            LOT::Temple::Temple TM_Exec;
-            int result = TM_Exec.Compile(File.substr(File.length() - 3, File.length()) == ".tm"? File + "bc" : "out.tmbc", LOT::Temple::Utils::FileToString(File));
+            LOT::Temple::Temple TM_Compiler;
+            int result = TM_Compiler.Compile(File.substr(File.length() - 3, File.length()) == ".tm"? File + "bc" : "out.tmbc", LOT::Temple::Utils::FileToString(File));
 
-            if (result != LOT::Temple::CompilerExitcodes::COMPILER_OK) std::cout << "Compilation failed." << std::endl;
+            if (result != LOT::Temple::CompilerExitcodes::COMPILER_OK) {
+                std::cout << "Compilation failed." << std::endl;
 
-            return 1;
+                return 1;
+            };
+
+            return 0;
+        };
+        
+        std::cout << "Expected file input." << std::endl;
+
+        return 0;
+    };
+
+    if (std::count(params.begin(),params.end(), "-r")) {
+        if (std::count(params.begin(),params.end(), "-f")) {
+            LOT::Temple::Temple TM_Runner;
+
+            int result = TM_Runner.Run(File);
+
+            std::cout << "Exited with exitcode " << result << "." << std::endl;
+
+            return 0;
         };
         
         std::cout << "Expected file input." << std::endl;

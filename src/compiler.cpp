@@ -3,7 +3,8 @@
 LOT::Temple::Compiler::Compiler() {};
 
 void LOT::Temple::Compiler::Assign(LOT::Temple::Script *p_Script, LOT::Temple::Bytebuffer *p_Bytecode) {
-    Script = p_Script; Bytecode = p_Bytecode;
+    Script = p_Script; 
+    Bytecode = p_Bytecode;
 };
 
 std::vector <LOT::Temple::Token> LOT::Temple::Compiler::Extract() {

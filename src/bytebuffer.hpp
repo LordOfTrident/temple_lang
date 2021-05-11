@@ -11,10 +11,9 @@ namespace LOT {
             void Write8(uint8_t p_Data);
             void Write16(uint16_t p_Data);
             void Write32(uint32_t p_Data);
-            void Back();
 
             std::vector <uint8_t> Buffer;
-            int Pointer;
+            uint32_t Pointer;
         };
     };
 };
