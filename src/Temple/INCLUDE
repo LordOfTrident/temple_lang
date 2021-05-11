@@ -1,7 +1,0 @@
-#include "../../include/LOT/++/++.hpp"
-#include "../../include/LOT/++/Math++/Math++.hpp"
-
-#include "../../include/COLORS"
-#include "../../include/UNITS"
-#include "../../include/INFO"
-#include "../../include/COMPONENTS"
