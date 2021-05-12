@@ -46,14 +46,29 @@ int LOT::Temple::Runtime::Run() {
             case LOT::Temple::Opcode::ADD_OP: {
                 uint32_t a = Stack.Pop32();
                 uint32_t b = Stack.Pop32();
+                
+                a = ((a & 0xFF000000) >> 24) | ((a & 0x00FF0000) >> 16) | ((a & 0x0000FF00) >> 8) | (a & 0x000000FF);
+                b = ((b & 0xFF000000) >> 24) | ((b & 0x00FF0000) >> 16) | ((b & 0x0000FF00) >> 8) | (b & 0x000000FF);
 
                 Stack.Push32(a + b);
 
                 break;
             };
 
+            case LOT::Temple::Opcode::MULT_OP: {
+                uint32_t a = Stack.Pop32();
+                uint32_t b = Stack.Pop32();
+                
+                a = ((a & 0xFF000000) >> 24) | ((a & 0x00FF0000) >> 16) | ((a & 0x0000FF00) >> 8) | (a & 0x000000FF);
+                b = ((b & 0xFF000000) >> 24) | ((b & 0x00FF0000) >> 16) | ((b & 0x0000FF00) >> 8) | (b & 0x000000FF);
+
+                Stack.Push32(a * b);
+
+                break;
+            };
+
             case LOT::Temple::Opcode::HALT_OP: {
-                exitcode = (uint8_t) Stack.Pop32();
+                exitcode = (Stack.Pop32() & 0xFF000000) >> 24;
                 running = false;
 
                 break;
@@ -67,7 +82,7 @@ int LOT::Temple::Runtime::Run() {
 };
 
 uint16_t LOT::Temple::Runtime::Read16() {
-    return (Code[InstructionPointer + 1] << 8) | (Code[InstructionPointer + 2]);
+    return (Code[InstructionPointer + 1] << 8) | Code[InstructionPointer + 2];
 };
 
 uint32_t LOT::Temple::Runtime::Read32() {

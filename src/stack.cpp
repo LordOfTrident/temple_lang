@@ -28,13 +28,13 @@ uint8_t LOT::Temple::Stack::Pop8() {
 };
 
 uint16_t LOT::Temple::Stack::Pop16() {
-    uint16_t b = (uint16_t) Pop8(), a = (uint16_t) Pop8();
+    uint8_t b = Pop8(), a = Pop8();
 
     return (a << 8) | b;
 };
 
 uint32_t LOT::Temple::Stack::Pop32() {
    uint8_t d = Pop8(), c = Pop8(), b = Pop8(), a = Pop8();
-
+   
    return (d << 24) | (c << 16) | (b << 8) | a; 
 };
