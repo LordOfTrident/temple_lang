@@ -1,1 +1,0 @@
-g++ -g $(find src -type f -iregex ".*\.cpp") -o $1 $2 $3 -m64 -Wall -std=c++17 -L/usr/X11R6/lib -lX11 -lpthread -lXrandr -lXi -ldl

@@ -1,3 +1,0 @@
-printf "\e[0;32mRunning Release\e[1;34m\n----------------------------\n\e[0m\n";
-
-./bin/temple -c -f test/test.tm
