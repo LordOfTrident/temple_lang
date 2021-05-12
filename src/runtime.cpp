@@ -43,6 +43,22 @@ int LOT::Temple::Runtime::Run() {
                 break;
             };
 
+            case LOT::Temple::Opcode::POP_OP: {
+                Stack.Pop32();
+
+                break;
+            };
+
+            case LOT::Temple::Opcode::INC_OP: {
+                uint32_t a = Stack.Pop32();
+                
+                a = ((a & 0xFF000000) >> 24) | ((a & 0x00FF0000) >> 16) | ((a & 0x0000FF00) >> 8) | (a & 0x000000FF);
+
+                Stack.Push32(++ a);
+
+                break;
+            };
+
             case LOT::Temple::Opcode::ADD_OP: {
                 uint32_t a = Stack.Pop32();
                 uint32_t b = Stack.Pop32();

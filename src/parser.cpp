@@ -59,6 +59,7 @@ int LOT::Temple::Parser::GetInstruction(std::string p_Tok) {
     if (p_Tok == "mult") return LOT::Temple::InstructionTokens::MULTIPLY;
     if (p_Tok == "div") return LOT::Temple::InstructionTokens::DIVIDE;
     if (p_Tok == "mod") return LOT::Temple::InstructionTokens::MODULUS;
+    if (p_Tok == "inc") return LOT::Temple::InstructionTokens::INCREMENT;
     
     return -1;
 };

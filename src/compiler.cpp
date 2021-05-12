@@ -74,6 +74,12 @@ int LOT::Temple::Compiler::Compile() {
                     break;
                 };
 
+                case LOT::Temple::InstructionTokens::INCREMENT: {
+                    Bytecode->Write8(LOT::Temple::Opcode::INC_OP);
+
+                    break;
+                };
+
                 default: {
                     std::cout << LOT::Temple::Exception::Throw("Unknown token", Script->Tokens[i + 1].Line, true) << std::endl;
 
