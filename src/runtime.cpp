@@ -51,8 +51,6 @@ int LOT::Temple::Runtime::Run() {
 
             case LOT::Temple::Opcode::INC_OP: {
                 uint32_t a = Stack.Pop32();
-                
-                a = ((a & 0xFF000000) >> 24) | ((a & 0x00FF0000) >> 16) | ((a & 0x0000FF00) >> 8) | (a & 0x000000FF);
 
                 Stack.Push32(++ a);
 
@@ -62,9 +60,6 @@ int LOT::Temple::Runtime::Run() {
             case LOT::Temple::Opcode::ADD_OP: {
                 uint32_t a = Stack.Pop32();
                 uint32_t b = Stack.Pop32();
-                
-                a = ((a & 0xFF000000) >> 24) | ((a & 0x00FF0000) >> 16) | ((a & 0x0000FF00) >> 8) | (a & 0x000000FF);
-                b = ((b & 0xFF000000) >> 24) | ((b & 0x00FF0000) >> 16) | ((b & 0x0000FF00) >> 8) | (b & 0x000000FF);
 
                 Stack.Push32(a + b);
 
@@ -74,9 +69,6 @@ int LOT::Temple::Runtime::Run() {
             case LOT::Temple::Opcode::MULT_OP: {
                 uint32_t a = Stack.Pop32();
                 uint32_t b = Stack.Pop32();
-                
-                a = ((a & 0xFF000000) >> 24) | ((a & 0x00FF0000) >> 16) | ((a & 0x0000FF00) >> 8) | (a & 0x000000FF);
-                b = ((b & 0xFF000000) >> 24) | ((b & 0x00FF0000) >> 16) | ((b & 0x0000FF00) >> 8) | (b & 0x000000FF);
 
                 Stack.Push32(a * b);
 
@@ -84,8 +76,25 @@ int LOT::Temple::Runtime::Run() {
             };
 
             case LOT::Temple::Opcode::HALT_OP: {
-                exitcode = (Stack.Pop32() & 0xFF000000) >> 24;
+                exitcode = (uint8_t) Stack.Pop32();
                 running = false;
+
+                break;
+            };
+
+            case LOT::Temple::Opcode::OUT_OP: {
+                std::cout << Stack.Pop32();
+
+                break;
+            };
+
+            case LOT::Temple::Opcode::OUTCH_OP: {
+                uint8_t chr = (uint8_t) Stack.Pop32();
+
+                if (chr > 127) {
+                    chr -= 128;
+                    std::cout << LOT::Temple::AsciiColors[(int)chr > (int)LOT::Temple::AsciiColors.size() - 1? 0 : (int)chr];
+                } else std::cout << char(chr);
 
                 break;
             };

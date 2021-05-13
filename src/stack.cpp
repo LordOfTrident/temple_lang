@@ -24,7 +24,7 @@ void LOT::Temple::Stack::Push32(uint32_t p_Data) {
 };
 
 uint8_t LOT::Temple::Stack::Pop8() {
-    return Buffer[Pointer --];
+    return Buffer[(int)Pointer == -1? 0 : Pointer --];
 };
 
 uint16_t LOT::Temple::Stack::Pop16() {
@@ -36,5 +36,5 @@ uint16_t LOT::Temple::Stack::Pop16() {
 uint32_t LOT::Temple::Stack::Pop32() {
    uint8_t d = Pop8(), c = Pop8(), b = Pop8(), a = Pop8();
    
-   return (d << 24) | (c << 16) | (b << 8) | a; 
+   return (a << 24) | (b << 16) | (c << 8) | d; 
 };

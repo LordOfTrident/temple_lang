@@ -5,6 +5,7 @@
 #include "./bytebuffer.hpp"
 #include "./bytecode.hpp"
 #include "./stack.hpp"
+#include "./asciicolors.hpp"
 
 namespace LOT {
     namespace Temple {

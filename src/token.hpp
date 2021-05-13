@@ -20,7 +20,10 @@ namespace LOT {
             MULTIPLY,
             DIVIDE,
             MODULUS,
-            INCREMENT
+            INCREMENT,
+
+            OUT,
+            OUTCHAR
         };
 
         class Token {

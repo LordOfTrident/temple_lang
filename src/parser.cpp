@@ -19,6 +19,14 @@ int LOT::Temple::Parser::Parse() {
         token = "";
 
         // While the current character is not a whitespace, add it to the token string
+        while ((int)std::string(" \n \0 \t").find(Script->Source[idx]) != -1) ++ idx;
+        if (Script->Source[idx] == ';') {
+            while (Script->Source[idx] != '\n') ++ idx;
+            ++ idx;
+
+            continue;
+        };
+
         while ((int)std::string(" \n \0 \t").find(Script->Source[idx]) == -1 && !(idx > Script->Source.length() - 1)) token += Script->Source[idx ++];
 
         // Checking if the token is a number
@@ -60,6 +68,8 @@ int LOT::Temple::Parser::GetInstruction(std::string p_Tok) {
     if (p_Tok == "div") return LOT::Temple::InstructionTokens::DIVIDE;
     if (p_Tok == "mod") return LOT::Temple::InstructionTokens::MODULUS;
     if (p_Tok == "inc") return LOT::Temple::InstructionTokens::INCREMENT;
+    if (p_Tok == "out") return LOT::Temple::InstructionTokens::OUT;
+    if (p_Tok == "outch") return LOT::Temple::InstructionTokens::OUTCHAR;
     
     return -1;
 };

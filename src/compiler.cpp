@@ -80,6 +80,18 @@ int LOT::Temple::Compiler::Compile() {
                     break;
                 };
 
+                case LOT::Temple::InstructionTokens::OUT: {
+                    Bytecode->Write8(LOT::Temple::Opcode::OUT_OP);
+
+                    break;
+                };
+
+                case LOT::Temple::InstructionTokens::OUTCHAR: {
+                    Bytecode->Write8(LOT::Temple::Opcode::OUTCH_OP);
+
+                    break;
+                };
+
                 default: {
                     std::cout << LOT::Temple::Exception::Throw("Unknown token", Script->Tokens[i + 1].Line, true) << std::endl;
 

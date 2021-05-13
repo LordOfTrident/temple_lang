@@ -16,7 +16,10 @@ namespace LOT {
             MULT_OP = 0x12,
             DIV_OP = 0x13,
             MOD_OP = 0x14,
-            INC_OP = 0x15
+            INC_OP = 0x15,
+
+            OUT_OP = 0x20,
+            OUTCH_OP = 0x21
         };
     };
 };

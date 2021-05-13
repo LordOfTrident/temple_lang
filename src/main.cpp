@@ -22,7 +22,7 @@ int main(int argc, char* argv[]) {
         };
 
         // Comparing parameters
-        if (arg == "-c" || arg == "-v" || arg == "-r") {params.push_back(arg); continue;}; // Modes
+        if (arg == "-c" || arg == "-v" || arg == "-r" || arg == "-t") {params.push_back(arg); continue;}; // Modes
         if (arg == "-f") {
             params.push_back(arg); 
 
@@ -53,19 +53,40 @@ int main(int argc, char* argv[]) {
     // Checking if no parameters were passed
     if (params.size() == 0) {
         std::cout << cc_YELLOW << " _..__ ________  _________ _      _____\n|_|| _|  ___|  \\/\\_|| ___ \\ |    |  __/\n  ||| | |__ | . \\._/| |,/ /\\\\    | |__  \n  | |/|  _||| |\\/|_||  \\|/| \\|   |  _|| \n .| ||| |_``| | / _|| ||| | ||.._| |_|| \n \\\\_/\\\\____/\\_| ||_/\\_|   \\___||/\\____/ \n ||   |/        ||            //     ||\n" << 
-        cc_NC << (std::string) "\nTemple Programming Language\nby LordOfTrident\ncurrent version " + VER + " (" + DATE + ") pre-release\nusage:\n  temple <parameters>\nparameters:\n  -c            compile mode\n  -r            run mode\n  -f <name>     attach a file\n  -v            show the version\nversions:\n  pre-release\n    (5/8/2021)\n    0.0.1       working parser, compiler\n    (5/12/2021)\n    0.0.2       runtime added\n" << std::endl;
+        cc_NC << (std::string) "\nTemple Programming Language\nby LordOfTrident\ncurrent version " + VER + " (" + DATE + ") pre-release\nusage:\n  temple <parameters>\nparameters:\n  -c            compile mode\n  -r            run mode\n  -f <name>     attach a file\n  -t            show the ascii table\n  -v            show the version\nversions:\n  pre-release\n    (5/8/2021)\n    0.0.1       working parser, compiler\n    (5/12/2021)\n    0.0.2       runtime added\n    (5/13/2021)\n    0.0.3       output added\n" << std::endl;
 
         return 0;
     };
 
-    // Checking if version parameter was specified
+    // Checkng modes
     if (std::count(params.begin(),params.end(), "-v")) {
         std::cout << (std::string) "v" + VER + " (" + DATE + ")" << std::endl;
 
         return 0;
     };
 
-    // Checkng if compile mode was enabled
+    if (std::count(params.begin(),params.end(), "-t")) {
+        std::cout << (std::string) "ASCII TABLE\nCONTROLS\n|" + cc_CYAN + "  0" + cc_NC + "|" + cc_MAGENTA + "\\0" + cc_NC + "| |" + cc_CYAN + " 10" + cc_NC + "|" + cc_MAGENTA + "\\n" + cc_NC + "|\nCHARACTERS" << std::endl;
+
+        for (int i = 32; i < 127; ++ i) {
+            std::cout << (std::string) "|" + cc_CYAN << std::setw(3) << i << (std::string) cc_NC + "| " << char(i) << "| ";
+
+            if ((i - 31) % 5 == 0) std::cout << std::endl;
+        }; 
+        
+        std::cout << "COLORS" << std::endl;
+
+        for (int i = 128; i < (int)LOT::Temple::AsciiColors.size() + 128; ++ i) {
+            std::cout << (std::string) "|" + cc_CYAN << std::setw(3) << i << (std::string) cc_NC + "|" << LOT::Temple::AsciiColors[i - 128] + " A" + cc_NC << "| ";
+
+            if ((i - 127) % 5 == 0) std::cout << std::endl;
+        };
+
+        std::cout << std::endl;
+
+        return 0;
+    };
+
     if (std::count(params.begin(),params.end(), "-c")) {
         if (std::count(params.begin(),params.end(), "-f")) {
             LOT::Temple::Temple TM_Compiler;
@@ -76,6 +97,8 @@ int main(int argc, char* argv[]) {
 
                 return 1;
             };
+
+            std::cout << "Compiled succesfully." << std::endl;
 
             return 0;
         };
@@ -91,9 +114,9 @@ int main(int argc, char* argv[]) {
 
             int result = TM_Runner.Run(File);
 
-            std::cout << "Exited with exitcode " << result << "." << std::endl;
+            std::cout << "\nExited with exitcode " << result << "." << std::endl;
 
-            return 0;
+            return result;
         };
         
         std::cout << "Expected file input." << std::endl;
