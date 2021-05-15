@@ -33,6 +33,24 @@ int LOT::Temple::Parser::Parse() {
         if (token[0] == '#') {
             int number = GetNumber(token);
             Script->Add(LOT::Temple::Token(LOT::Temple::TokenTypes::NUMBER, number, line));
+        // Else check if its a character
+        } else if (token[0] == '\'') {
+            // Error if it isnt ended with '
+            if (token[(int)token.length() - 1] != '\'') {
+                std::cout << LOT::Temple::Exception::Throw("Expected ' to end character \"" + token + "\"", line, true) << std::endl;
+
+                break;
+            };
+
+            // Error if its not just one character
+            if ((int)token.length() > 3) {
+                std::cout << LOT::Temple::Exception::Throw("Unexpected character size \"" + token + "\"", line, true) << std::endl;
+            
+                break;
+            };
+
+            int number = GetCharNumber(token);
+            Script->Add(LOT::Temple::Token(LOT::Temple::TokenTypes::NUMBER, number, line));
         // Else its an instruction
         } else {
             int instruction = GetInstruction(token);
@@ -49,6 +67,12 @@ int LOT::Temple::Parser::Parse() {
     };
 
     return LOT::Temple::ParserExitcodes::PARSER_OK;
+};
+
+uint32_t LOT::Temple::Parser::GetCharNumber(std::string p_Tok) {
+    char NumCharacter = p_Tok[1];
+    
+    return (uint32_t)NumCharacter;
 };
 
 uint32_t LOT::Temple::Parser::GetNumber(std::string p_Tok) {

@@ -6,6 +6,7 @@
 #include "./bytecode.hpp"
 #include "./stack.hpp"
 #include "./asciicolors.hpp"
+#include "./exception.hpp"
 
 namespace LOT {
     namespace Temple {

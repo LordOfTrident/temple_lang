@@ -98,9 +98,25 @@ int LOT::Temple::Runtime::Run() {
 
                 break;
             };
+
+            default: {
+                std::cout << "\n" << LOT::Temple::Exception::Runtime("UNKNOWN INSTRUCTION", true) << std::endl;
+
+                exitcode = 1;
+            
+                break;
+            };
         };
 
         ++ InstructionPointer;
+
+        if (InstructionPointer > (uint32_t)Code.size()) {
+            std::cout << "\n" << LOT::Temple::Exception::Runtime("PROGRAM EXITED BUT NOT HALTED", true) << std::endl;
+
+            exitcode = 1;
+            
+            break;
+        };
     };
 
     return exitcode;

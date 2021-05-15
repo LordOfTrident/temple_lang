@@ -66,7 +66,10 @@ int main(int argc, char* argv[]) {
     };
 
     if (std::count(params.begin(),params.end(), "-t")) {
-        std::cout << (std::string) "ASCII TABLE\nCONTROLS\n|" + cc_CYAN + "  0" + cc_NC + "|" + cc_MAGENTA + "\\0" + cc_NC + "| |" + cc_CYAN + " 10" + cc_NC + "|" + cc_MAGENTA + "\\n" + cc_NC + "|\nCHARACTERS" << std::endl;
+        std::cout << (std::string) "ASCII TABLE\nCONTROLS\n|" 
+            + cc_CYAN + "  0" + cc_NC + "|" + cc_MAGENTA + "\\0" + cc_NC + "| |" 
+            + cc_CYAN + "  9" + cc_NC + "|" + cc_MAGENTA + "\\t" + cc_NC + "| |" 
+            + cc_CYAN + " 10" + cc_NC + "|" + cc_MAGENTA + "\\n" + cc_NC + "|\nCHARACTERS" << std::endl;
 
         for (int i = 32; i < 127; ++ i) {
             std::cout << (std::string) "|" + cc_CYAN << std::setw(3) << i << (std::string) cc_NC + "| " << char(i) << "| ";
@@ -77,7 +80,7 @@ int main(int argc, char* argv[]) {
         std::cout << "COLORS" << std::endl;
 
         for (int i = 128; i < (int)LOT::Temple::AsciiColors.size() + 128; ++ i) {
-            std::cout << (std::string) "|" + cc_CYAN << std::setw(3) << i << (std::string) cc_NC + "|" << LOT::Temple::AsciiColors[i - 128] + " A" + cc_NC << "| ";
+            std::cout << (std::string) "|" + cc_CYAN << std::setw(3) << i << (std::string) cc_NC + "|" << LOT::Temple::AsciiColors[i - 128] + "aA" + cc_NC << "| ";
 
             if ((i - 127) % 5 == 0) std::cout << std::endl;
         };
