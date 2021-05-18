@@ -17,7 +17,8 @@ namespace LOT {
             uint32_t Pop32();
             
             std::vector <uint8_t> Buffer;
-            uint32_t Pointer;
+            //uint32_t Pointer;
+            uint32_t *Pointer;
         };
     };
 };

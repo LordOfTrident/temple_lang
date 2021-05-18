@@ -4,11 +4,13 @@ extern const uint16_t LOT::Temple::STACK_MAX_SIZE = 1024;
 
 LOT::Temple::Stack::Stack() {
     Buffer.resize(STACK_MAX_SIZE);
-    Pointer = -1;
+    //Pointer = 0;
 };
 
 void LOT::Temple::Stack::Push8(uint8_t p_Data) {
-    Buffer[++ Pointer] = p_Data;
+    //Buffer[Pointer ++] = p_Data;
+    Buffer[*Pointer] = p_Data;
+    *Pointer += 1;
 };
 
 void LOT::Temple::Stack::Push16(uint16_t p_Data) {
@@ -24,7 +26,8 @@ void LOT::Temple::Stack::Push32(uint32_t p_Data) {
 };
 
 uint8_t LOT::Temple::Stack::Pop8() {
-    return Buffer[(int)Pointer == -1? 0 : Pointer --];
+    *Pointer -= 1;
+    return Buffer[*Pointer];
 };
 
 uint16_t LOT::Temple::Stack::Pop16() {

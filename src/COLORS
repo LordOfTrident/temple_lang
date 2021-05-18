@@ -1,3 +1,18 @@
+#if defined(_WIN32) || defined(WIN32)
+#define cc_red ""
+#define cc_RED ""
+#define cc_yellow ""
+#define cc_YELLOW ""
+#define cc_green ""
+#define cc_GREEN ""
+#define cc_cyan ""
+#define cc_CYAN ""
+#define cc_blue ""
+#define cc_BLUE ""
+#define cc_magenta ""
+#define cc_MAGENTA ""
+#define cc_NC ""
+#else
 #define cc_red "\e[0;31m"
 #define cc_RED "\e[1;31m"
 #define cc_yellow "\e[0;33m"
@@ -11,3 +26,4 @@
 #define cc_magenta "\e[0;35m"
 #define cc_MAGENTA "\e[1;35m"
 #define cc_NC "\e[0m"
+#endif

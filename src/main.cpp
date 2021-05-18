@@ -77,7 +77,7 @@ int main(int argc, char* argv[]) {
             if ((i - 31) % 5 == 0) std::cout << std::endl;
         }; 
         
-        std::cout << "COLORS" << std::endl;
+        std::cout << "COLORS (UNAVAILABLE ON WINDOWS)" << std::endl;
 
         for (int i = 128; i < (int)LOT::Temple::AsciiColors.size() + 128; ++ i) {
             std::cout << (std::string) "|" + cc_CYAN << std::setw(3) << i << (std::string) cc_NC + "|" << LOT::Temple::AsciiColors[i - 128] + "aA" + cc_NC << "| ";

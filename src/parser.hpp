@@ -23,8 +23,10 @@ namespace LOT {
             LOT::Temple::Script *Script;
 
             uint32_t GetNumber(std::string p_Tok);
+            uint32_t GetHexNumber(std::string p_Tok);
             uint32_t GetCharNumber(std::string p_Tok);
             int GetInstruction(std::string p_Tok);
+            int GetRegister(std::string p_Tok);
         };
     };
 };
