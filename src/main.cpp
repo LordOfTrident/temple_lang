@@ -53,7 +53,7 @@ int main(int argc, char* argv[]) {
     // Checking if no parameters were passed
     if (params.size() == 0) {
         std::cout << cc_YELLOW << " _..__ ________  _________ _      _____\n|_|| _|  ___|  \\/\\_|| ___ \\ |    |  __/\n  ||| | |__ | . \\._/| |,/ /\\\\    | |__  \n  | |/|  _||| |\\/|_||  \\|/| \\|   |  _|| \n .| ||| |_``| | / _|| ||| | ||.._| |_|| \n \\\\_/\\\\____/\\_| ||_/\\_|   \\___||/\\____/ \n ||   |/        ||            //     ||\n" << 
-        cc_NC << (std::string) "\nTemple Programming Language\nby LordOfTrident\ncurrent version " + VER + " (" + DATE + ") pre-release\nusage:\n  temple <parameters>\nparameters:\n  -c            compile mode\n  -r            run mode\n  -f <name>     attach a file\n  -t            show the ascii table\n  -v            show the version\nversions:\n  pre-release\n    (5/8/2021)\n    0.0.1       working parser, compiler\n    (5/12/2021)\n    0.0.2       runtime added\n    (5/13/2021)\n    0.0.3       output added\n" << std::endl;
+        cc_NC << (std::string) "\nTemple Programming Language\nby LordOfTrident\ncurrent version " + VER + " (" + DATE + ") pre-release\nusage:\n  temple <parameters>\nparameters:\n  -c            compile mode\n  -r            run mode\n  -f <name>     attach a file\n  -t            show the ascii table\n  -v            show the version\nversions:\n  pre-release\n    (5/8/2021)\n    0.0.1       working parser, compiler\n    (5/12/2021)\n    0.0.2       runtime added\n    (5/13/2021)\n    0.0.3       output added\n    (5/16/2021)\n    0.0.4       registers\n    (5/18/2021)\n    0.0.5       restructured\n" << std::endl;
 
         return 0;
     };
